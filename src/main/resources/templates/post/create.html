@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new post</title>
+</head>
+<body>
+<h1>Add new post</h1>
+<form data-th-action="@{/post/create}" data-th-object="${post}" method="post">
+    <div>
+        <div>Caption: </div>
+        <input type="text" data-th-field="*{caption}" name="caption" />
+    </div>
+    <div>
+        <div>Text</div>
+        <textarea name="text" data-th-field="*{text}"></textarea>
+    </div>
+    <div>
+        <input type="submit" value="Send" />
+    </div>
+</form>
+</body>
+</html>

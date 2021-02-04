@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My blog demo</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common  :: common_header(~{::title})">
+    <title>My blog</title>
 </head>
 <body>
-<h1>Welcome to my blog 1</h1>
+<div class="container">
+    <h1>Welcome to my blog</h1>
+    <h2>Posts (<span data-th-text="${postsCount}"></span>)</h2>
+    <div data-th-each="post : ${posts}">
+        <h3 data-th-text="${post.caption}">Post</h3>
+        <p data-th-text="${post.text}">Post body</p>
+    </div>
+    <a data-th-href="@{post/create}">Create post</a>
+    <div>
+        <a th:href="@{/registration}">Sign Up</a>
+    </div>
+</div>
+
+<script th:replace="common :: footer_script"></script>
 </body>
 </html>
