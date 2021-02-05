@@ -1,5 +1,7 @@
 package ru.dobrenky.blog.model.dto;
 
+import ru.dobrenky.blog.validator.ValidEmail;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -7,6 +9,8 @@ public class UserDTO {
     @NotNull
     @NotEmpty
     private String userName;
+
+    @ValidEmail(message = "{form.registration.invalidEmail}")
     @NotNull
     @NotEmpty
     private String email;
