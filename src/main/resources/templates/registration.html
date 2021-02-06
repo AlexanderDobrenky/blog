@@ -10,6 +10,9 @@
             <div class="card">
                 <div class="card-header text-center" th:text="#{form.registration.title}">Registration</div>
                 <div class="card-body">
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('user')}">
+                        <div th:each="er : ${#fields.errors('user')}" th:text="${er}">Error</div>
+                    </div>
                     <form th:action="@{/registration}" th:object="${user}" method="post">
                         <div class="form-floating mb-3 has-validation">
                             <input type="text" class="form-control" th:field="*{userName}"
@@ -46,6 +49,7 @@
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary" th:text="#{form.registration.signUp}">Sign Up</button>
+                            <small><a href="#" th:href="@{/login}" th:text="#{form.registration.alreadyHaveAccount}">Already have account</a></small>
                         </div>
                     </form>
                 </div>

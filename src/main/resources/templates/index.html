@@ -15,6 +15,12 @@
     <div>
         <a th:href="@{/registration}">Sign Up</a>
     </div>
+
+    <div data-th-each="user : ${users}">
+        <div data-th-text="${user.userName}">user</div>
+        <div data-th-text="${user.email}">email</div>
+        <div data-th-text="${user.password}">password</div>
+    </div>
 </div>
 
 <script th:replace="common :: footer_script"></script>

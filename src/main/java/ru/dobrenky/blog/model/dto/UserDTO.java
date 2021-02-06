@@ -1,16 +1,18 @@
 package ru.dobrenky.blog.model.dto;
 
+import ru.dobrenky.blog.validator.PasswordMatches;
 import ru.dobrenky.blog.validator.ValidEmail;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+@PasswordMatches(message = "{form.registration.validation.invalidPassword}")
 public class UserDTO {
     @NotNull
     @NotEmpty
     private String userName;
 
-    @ValidEmail(message = "{form.registration.invalidEmail}")
+    @ValidEmail(message = "{form.registration.validation.invalidEmail}")
     @NotNull
     @NotEmpty
     private String email;

@@ -7,21 +7,25 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.dobrenky.blog.model.Post;
 import ru.dobrenky.blog.repository.PostRepository;
+import ru.dobrenky.blog.repository.UserRepository;
 
 @Controller
 public class MainController {
 
     private PostRepository postRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    public MainController(PostRepository postRepository) {
+    public MainController(PostRepository postRepository, UserRepository userRepository) {
         this.postRepository = postRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("postsCount", postRepository.count());
         model.addAttribute("posts", postRepository.findAll());
+        model.addAttribute("users", userRepository.findAll());
         return "/index";
     }
 
