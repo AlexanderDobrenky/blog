@@ -4,55 +4,61 @@
     <title th:text="#{form.registration.title}">Registration</title>
 </head>
 <body>
-<div class="container position-absolute top-50 start-50 translate-middle">
-    <div class="row justify-content-md-center">
-        <div class="col col-md-4">
-            <div class="card">
-                <div class="card-header text-center" th:text="#{form.registration.title}">Registration</div>
-                <div class="card-body">
-                    <div class="alert alert-danger" th:if="${#fields.hasErrors('user')}">
-                        <div th:each="er : ${#fields.errors('user')}" th:text="${er}">Error</div>
-                    </div>
-                    <form th:action="@{/registration}" th:object="${user}" method="post">
-                        <div class="form-floating mb-3 has-validation">
-                            <input type="text" class="form-control" th:field="*{userName}"
-                                   th:classappend="${#fields.hasErrors('userName')} ? 'is-invalid'" id="userName"/>
-                            <label for="userName" class="form-label" th:text="#{form.registration.username}">User name</label>
-                            <div th:if="${#fields.hasErrors('userName')}" class="invalid-feedback">
-                                <div th:each="er : ${#fields.errors('userName')}" th:text="${er}"></div>
-                            </div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" th:field="*{email}"
-                                   th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'" id="email"/>
-                            <label for="email" class="form-label" th:text="#{form.registration.email}">E-mail</label>
-                            <div th:if="${#fields.hasErrors('email')}" class="invalid-feedback">
-                                <div th:each="er : ${#fields.errors('email')}" th:text="${er}"></div>
-                            </div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="password" class="form-control" th:field="*{password}"
-                                   th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'" id="password"/>
-                            <label for="password" class="form-label" th:text="#{form.registration.password}">Password</label>
-                            <div th:if="${#fields.hasErrors('password')}" class="invalid-feedback">
-                                <div th:each="er : ${#fields.errors('password')}" th:text="${er}"></div>
-                            </div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="password" class="form-control" th:field="*{confirmPassword}"
-                                   th:classappend="${#fields.hasErrors('confirmPassword')} ? 'is-invalid'"
-                                   id="confirmPassword"/>
-                            <label for="confirmPassword" class="form-label" th:text="#{form.registration.confirmPassword}">Confirm</label>
-                            <div th:if="${#fields.hasErrors('confirmPassword')}" class="invalid-feedback">
-                                <div th:each="er : ${#fields.errors('confirmPassword')}" th:text="${er}"></div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary" th:text="#{form.registration.signUp}">Sign Up</button>
-                            <small><a href="#" th:href="@{/login}" th:text="#{form.registration.alreadyHaveAccount}">Already have account</a></small>
-                        </div>
-                    </form>
+<div class="container">
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <div class="card">
+            <div class="card-header text-center" th:text="#{form.registration.title}">Registration</div>
+            <div class="card-body">
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('user')}">
+                    <div th:each="er : ${#fields.errors('user')}" th:text="${er}">Error</div>
                 </div>
+                <form th:action="@{/registration}" th:object="${user}" method="post">
+                    <div class="form-floating mb-3 has-validation">
+                        <input type="text" class="form-control" th:field="*{userName}"
+                               th:classappend="${#fields.hasErrors('userName')} ? 'is-invalid'" id="userName"/>
+                        <label for="userName" class="form-label" th:text="#{form.registration.username}">User
+                            name</label>
+                        <div th:if="${#fields.hasErrors('userName')}" class="invalid-feedback">
+                            <div th:each="er : ${#fields.errors('userName')}" th:text="${er}"></div>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" th:field="*{email}"
+                               th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'" id="email"/>
+                        <label for="email" class="form-label"
+                               th:text="#{form.registration.email}">E-mail</label>
+                        <div th:if="${#fields.hasErrors('email')}" class="invalid-feedback">
+                            <div th:each="er : ${#fields.errors('email')}" th:text="${er}"></div>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" th:field="*{password}"
+                               th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'" id="password"/>
+                        <label for="password" class="form-label"
+                               th:text="#{form.registration.password}">Password</label>
+                        <div th:if="${#fields.hasErrors('password')}" class="invalid-feedback">
+                            <div th:each="er : ${#fields.errors('password')}" th:text="${er}"></div>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" th:field="*{confirmPassword}"
+                               th:classappend="${#fields.hasErrors('confirmPassword')} ? 'is-invalid'"
+                               id="confirmPassword"/>
+                        <label for="confirmPassword" class="form-label"
+                               th:text="#{form.registration.confirmPassword}">Confirm</label>
+                        <div th:if="${#fields.hasErrors('confirmPassword')}" class="invalid-feedback">
+                            <div th:each="er : ${#fields.errors('confirmPassword')}" th:text="${er}"></div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary" th:text="#{form.registration.signUp}">Sign
+                            Up
+                        </button>
+                        <small><a href="#" th:href="@{/login}"
+                                  th:text="#{form.registration.alreadyHaveAccount}">Already have
+                            account</a></small>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -1,27 +1,24 @@
 package ru.dobrenky.blog.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import ru.dobrenky.blog.model.User;
+import ru.dobrenky.blog.exception.UserAlreadyExistException;
 import ru.dobrenky.blog.model.dto.UserDTO;
-import ru.dobrenky.blog.repository.UserRepository;
+import ru.dobrenky.blog.service.UserService;
 
 import javax.validation.Valid;
 
 @Controller
 public class UserController {
-    private UserRepository userRepository;
+    private UserService userService;
 
-    @Autowired
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping("/registration")
@@ -35,8 +32,13 @@ public class UserController {
         if (errors.hasErrors()) {
             return new ModelAndView("registration", "user", user);
         }
-        User regUser = new User(user.getUserName(), user.getEmail(), user.getPassword());
-        userRepository.save(regUser);
+
+        try {
+            userService.createNewUserAccount(user);
+        } catch (UserAlreadyExistException e) {
+            errors.reject("form.registration.validation.userAlreadyRegistered");
+            return new ModelAndView("registration", "user", user);
+        }
         return new ModelAndView("redirect:/");
     }
 }

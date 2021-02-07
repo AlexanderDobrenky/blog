@@ -17,6 +17,7 @@
     </div>
 
     <div data-th-each="user : ${users}">
+        <div data-th-text="${user.id}">user</div>
         <div data-th-text="${user.userName}">user</div>
         <div data-th-text="${user.email}">email</div>
         <div data-th-text="${user.password}">password</div>
